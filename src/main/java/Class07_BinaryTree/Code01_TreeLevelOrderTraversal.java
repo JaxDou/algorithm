@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @Describe leetcode-107. 二叉树的层序遍历 II
+ * @Describe leetcode-107. 二叉树的层序遍历 II 二叉树按层遍历并收集节点
  * @Author Jax
  * @Date 2023/4/19 23:27
  */
