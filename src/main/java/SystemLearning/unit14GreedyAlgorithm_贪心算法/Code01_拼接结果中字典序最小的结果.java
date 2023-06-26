@@ -1,7 +1,6 @@
 package SystemLearning.unit14GreedyAlgorithm_贪心算法;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @Describe
@@ -39,16 +38,52 @@ public class Code01_拼接结果中字典序最小的结果 {
 
        return null;
     }
-//    process(String[] args)
 
-//    public static void main(String[] args) {
-//        String [] s = {"b", "a"};
-//
+    public static List<String> process(String[] strs) {
+
+        List<String> res = new ArrayList<>();
+        // 如果为空则返回一个空字符串
+        if (Objects.isNull(strs) || 0 == strs.length) {
+            res.add("");
+            return res;
+        }
+
+        // 不为空则遍历字符串
+        for (int i = 0; i < strs.length; i++) {
+            String first = strs[i];
+            String[] removeStrs = removeByIndex(strs, i);
+            List<String> process = process(removeStrs);
+
+            for (String s : process) {
+                res.add(first + s);
+            }
+        }
+        return res;
+    }
+
+
+    public static String [] removeByIndex (String [] strs, int index) {
+        String [] res = new String [strs.length-1];
+
+        int j = 0;
+        for (int i = 0; i < strs.length; i++) {
+            if (i == index) {
+                continue;
+            }
+            res[j++] = strs[i];
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        String [] s = {"b", "a"};
+
 //        Arrays.sort(s, (i, j) -> Integer.parseInt(String.valueOf(i.compareTo(j))));
-//        for (String s1 : s) {
-//            System.out.println(s1);
-//        }
-//    }
+
+        List<String> process = process(s);
+
+        process.forEach(System.out::println);
+    }
 
 
 }
